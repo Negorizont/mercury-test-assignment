@@ -1,0 +1,331 @@
+/*
+  Для шрифтов достаточно использовать woff2 и woff формат.
+  woff2 дает лучшее сжатие по сравнению с woff и имеет широкую поддержку: https://caniuse.com/#feat=woff2
+  woff нужен только для поддержки IE
+*/
+@font-face {
+  font-family: "Gotham";
+  font-weight: 900;
+  src: url("./fonts/GothamPro-Black.woff2") format("woff2"),
+    url("./fonts/GothamPro-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-weight: 500;
+  src: url("./fonts/GothamPro-Medium.woff2") format("woff2"),
+    url("./fonts/GothamPro-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-weight: bold;
+  src: url("./fonts/GothamPro-Bold.woff2") format("woff2"),
+    url("./fonts/GothamPro-Bold.woff") format("woff");
+}
+
+/* 
+  В реальных проектах имеет смысл использовать normalize.css или reset.css для сброса стилей по умолчанию.
+  В тестовом задании это можно сделать вручную.
+*/
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+form {
+  margin: 0;
+}
+
+html {
+  min-height: 100%;
+  /*
+    Хорошей практикой является использование цвета фона,
+    который будет отображаться, пока не загрузиться фоновое изображение
+  */
+  background-color: #ed4159;
+  background-image: url(./background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* 
+    При помощи медиа-выражений можно задавать стили,
+    зависящие от "плотности пикселей" монитора
+  */
+  html {
+    background-image: url(./background@2x.jpg);
+  }
+}
+
+body {
+  min-height: 100%;
+}
+
+/*
+  При помощи БЭМ выделяются компоненты лэйаута.
+  Стили для компонентов расположены рядом друг с другом,
+  в том числе и вариант для маленьких устройств
+
+  БЭМ позволяет понять структуру лэйаута, взглянув только на классы CSS:
+  .app-container
+    .app-container__logo
+    .app-container__body
+*/
+.app-container {
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-container__logo {
+  display: block;
+  width: 182px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 43px;
+}
+
+.app-container__body {
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
+  background-color: white;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  margin-top: 37px;
+}
+
+/* 
+  В данном примере адаптивность реализована через mobile-first подход.
+  Т.е. изначально верстка создается для маленьких экранов.
+  А с помощью медиа выражений корректируются для десктопов.
+*/
+@media screen and (min-width: 768px) {
+  .app-container__logo {
+    margin-top: 142px;
+    width: 315px;
+    height: 69px;
+  }
+
+  .app-container__body {
+    padding: 48px;
+    margin-top: 91px;
+  }
+}
+
+/*
+  БЭМ позволяет понять структуру лэйаута, взглянув только на классы CSS:
+  .login-form 
+    .login-form__title
+    .login-form__email
+    .login-form__password
+    .login-form__error
+    .login-form__submit
+*/
+
+.login-form {
+}
+
+.login-form__title {
+  opacity: 0.8;
+  font-family: Gotham, sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  color: #262626;
+}
+
+.login-form__email {
+  margin-top: 32px;
+  width: 100%;
+}
+
+.login-form__password {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.login-form__error {
+  margin-top: 24px;
+  border-radius: 4px;
+  background-color: rgba(237, 65, 89, 0.25);
+  font-family: Gotham, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ed4159;
+  padding: 14px;
+}
+
+.login-form__submit {
+  min-width: 145px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .login-form__title {
+    font-size: 24px;
+  }
+
+  .login-form__email {
+    margin-top: 48px;
+  }
+
+  .login-form__password {
+    margin-top: 32px;
+  }
+
+  .login-form__error {
+    margin-top: 32px;
+    font-size: 14px;
+    padding: 14px 16px;
+  }
+
+  .login-form__submit {
+    margin-top: 60px;
+    margin-bottom: 12px;
+  }
+}
+
+/*
+  БЭМ позволяет понять структуру лэйаута, взглянув только на классы CSS:
+  .user-profile 
+    .user-profile__avatar
+    .user-profile__name
+    .user-profile__logout
+*/
+
+.user-profile {
+}
+
+.user-profile__avatar {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-profile__name {
+  opacity: 0.8;
+  font-family: Gotham, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.15px;
+  text-align: center;
+  color: #262626;
+  display: block;
+  margin-top: 24px;
+}
+
+.user-profile__logout {
+  min-width: 145px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .user-profile__avatar {
+    width: 128px;
+    height: 128px;
+  }
+
+  .user-profile__name {
+    font-size: 28px;
+    margin-top: 40px;
+  }
+
+  .user-profile__logout {
+    margin-top: 56px;
+  }
+}
+
+/*
+  Переиспользуемые компоненты описываются отдельно.
+  Компонеты не стоит делать общими, если их переиспользование неочевидно.
+  В данном ТЗ явно переиспользуемые только компоненты, преставленные ниже.
+
+  Для таких компонентов важно запомнить два основных правила:
+  - не должно быть правил позиционирования (position)
+  - не должно быть внешних отступов (margin)
+*/
+
+.text-input {
+  display: block;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  border: solid 1px transparent;
+  padding: 14px 16px;
+  font-family: Gotham, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(38, 38, 38, 0.8);
+  outline: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+
+.text-input::placeholder {
+  color: rgba(38, 38, 38, 0.4);
+}
+
+.text-input:focus {
+  border-color: rgba(151, 151, 151, 0.25);
+}
+
+.text-input--invalid,
+.text-input--invalid:focus {
+  color: #ed4159;
+  border-color: #ed4159;
+}
+
+.text-input--invalid::placeholder {
+  color: rgba(237, 65, 89, 0.8);
+}
+
+.button {
+  display: block;
+  outline: none;
+  border: 0;
+  padding: 16px 32px;
+  height: 48px;
+  border-radius: 100px;
+  box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
+  background-color: #ed4159;
+  text-align: center;
+  -webkit-appearance: none;
+  font-family: Gotham, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+}
+
+.button:hover,
+.button:focus {
+  box-shadow: 0 6px 20px 0 rgba(237, 65, 89, 0.4);
+  background-color: #ffffff;
+  color: #ed4159;
+}
+
+.button:active {
+  box-shadow: 0 2px 10px 0 rgba(237, 65, 89, 0.5);
+  background-color: #ffffff;
+  color: #ed4159;
+}
